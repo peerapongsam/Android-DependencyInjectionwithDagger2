@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.peerapongme.labs.android.diwithdagger.models.Repository;
 import com.peerapongme.labs.android.diwithdagger.network.interfaces.GitHubApiInterface;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final TextView tvName = (TextView) findViewById(R.id.tv_name);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<List<Repository>> call, Response<List<Repository>> response) {
                         if (response.isSuccessful()) {
                             Log.d(TAG, response.body().toString());
+
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for (Repository repository : response.body()) {
+                                stringBuilder.append("Name: " + repository.getName() + "\n");
+                                stringBuilder.append("Full Name: " + repository.getFullName() + "\n");
+                                stringBuilder.append("Description: " + repository.getDescription() + "\n");
+                            }
+
+                            tvName.setText(stringBuilder.toString());
+
                             Snackbar.make(view, "Data retrieved", Snackbar.LENGTH_SHORT)
                                     .setAction("Action", null).show();
                         } else {

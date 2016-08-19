@@ -7,6 +7,11 @@ public class Repository {
     public int id;
     public String name;
     public String fullName;
+    public String description;
+
+    public String getDescription() {
+        return description;
+    }
 
     public int getId() {
         return id;
