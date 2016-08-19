@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.peerapongme.labs.android.diwithdagger">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".DaggerApp"
         android:allowBackup="true"
