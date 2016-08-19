@@ -11,11 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity {
     @Inject
+    @Named("cached")
     OkHttpClient mOkHttpClient;
     @Inject
     SharedPreferences mSharedPreferences;
