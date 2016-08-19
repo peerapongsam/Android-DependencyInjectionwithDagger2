@@ -6,18 +6,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity {
     @Inject
-    @Named("cached")
     OkHttpClient mOkHttpClient;
     @Inject
     SharedPreferences mSharedPreferences;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // assign singleton instances to fields
         // We need to cast to `DaggerApp` in order to get the right method
-        ((DaggerApp) getApplication()).getNetComponent().inject(this);
+        ((DaggerApp) getApplication()).getGitHubComponent().inject(this);
     }
 
     @Override
