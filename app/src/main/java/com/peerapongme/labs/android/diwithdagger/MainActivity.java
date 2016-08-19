@@ -1,5 +1,6 @@
 package com.peerapongme.labs.android.diwithdagger;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,7 +10,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
+import okhttp3.OkHttpClient;
+
 public class MainActivity extends AppCompatActivity {
+    @Inject
+    OkHttpClient mOkHttpClient;
+    @Inject
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // assign singleton instances to fields
+        // We need to cast to `DaggerApp` in order to get the right method
+        ((DaggerApp) getApplication()).getNetComponent().inject(this);
     }
 
     @Override
